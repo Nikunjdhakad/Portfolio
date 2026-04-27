@@ -7,25 +7,6 @@ import { Code2, Terminal } from 'lucide-react';
 export const About = () => {
   return (
     <section id="about" className="py-24 bg-transparent relative overflow-hidden">
-      {/* Decorative spinning ring of dots like in the video */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-        className="absolute -right-20 top-20 w-80 h-80 border border-white/5 rounded-full pointer-events-none opacity-20 hidden lg:block"
-      >
-        {[...Array(12)].map((_, i) => (
-          <div 
-            key={i}
-            className="absolute w-1 h-1 bg-teal rounded-full"
-            style={{
-              top: '50%',
-              left: '50%',
-              transform: `rotate(${i * 30}deg) translate(160px)`
-            }}
-          />
-        ))}
-      </motion.div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -39,7 +20,7 @@ export const About = () => {
             </h2>
             <div className="space-y-4 text-slate-300 leading-relaxed text-lg">
               <p>
-                I am a passionate explorer of technical systems based in Indore, India. 
+                I am a passionate explorer of technical systems based in <a href="https://www.google.com/maps/place/Indore,+Madhya+Pradesh" target="_blank" rel="noopener noreferrer" className="text-teal hover:underline decoration-teal/30 underline-offset-4 transition-all">Indore</a>, India. 
                 Currently pursuing my B.Tech in Computer Science & Engineering, I focus on 
                 creating robust full-stack applications and intuitive UI/UX experiences.
               </p>
@@ -52,10 +33,15 @@ export const About = () => {
             </div>
             
             <div className="mt-10 flex gap-6">
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-offwhite">Indore</span>
+              <a 
+                href="https://www.google.com/maps/place/Indore,+Madhya+Pradesh" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex flex-col group/loc"
+              >
+                <span className="text-2xl font-bold text-offwhite group-hover/loc:text-teal transition-colors">Indore</span>
                 <span className="text-sm text-slate-400">Current Base</span>
-              </div>
+              </a>
               <div className="w-[1px] bg-white/10"></div>
               <div className="flex flex-col">
                 <span className="text-2xl font-bold text-offwhite">B.Tech</span>
@@ -66,33 +52,86 @@ export const About = () => {
 
           {/* Skills Grid */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-xl"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col h-full"
           >
-            <h3 className="text-xl font-semibold text-offwhite mb-8 flex items-center gap-2">
-              <Terminal size={20} className="text-teal" />
-              Technical Arsenal
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {SKILLS.map((skill) => (
-                <div 
-                  key={skill.name}
-                  className="flex items-center p-4 bg-white/5 rounded-xl shadow-sm border border-white/10 hover:border-teal/50 transition-all group"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-teal/20 flex items-center justify-center text-teal mr-4 group-hover:bg-teal group-hover:text-white transition-colors">
-                    <Code2 size={16} />
+            <div className="bg-navy-light/50 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/5 shadow-2xl relative overflow-hidden group">
+              {/* Animated Scanline Effect */}
+              <motion.div 
+                animate={{ top: ['-10%', '110%'] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-teal/20 to-transparent z-0 pointer-events-none"
+              />
+
+              <div className="flex justify-between items-center mb-10 relative z-10">
+                <h3 className="text-xl font-bold text-offwhite flex items-center gap-3">
+                  <div className="p-2 bg-teal/10 rounded-lg">
+                    <Terminal size={20} className="text-teal" />
                   </div>
-                  <div>
-                    <div className="text-sm font-bold text-offwhite">{skill.name}</div>
-                    <div className="text-[10px] uppercase tracking-wider text-teal font-semibold opacity-70">
-                      {skill.category}
-                    </div>
-                  </div>
+                  Technical Arsenal
+                </h3>
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 rounded-full bg-maroon/40 animate-pulse"></div>
+                  <div className="w-2 h-2 rounded-full bg-teal/40"></div>
                 </div>
-              ))}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+                {SKILLS.map((skill, index) => {
+                  // Pseudo-random but consistent expertise bar
+                  const level = (skill.name.length * 7) % 30 + 70;
+                  
+                  return (
+                    <motion.div 
+                      key={skill.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * index }}
+                      whileHover={{ y: -5, scale: 1.02 }}
+                      className="p-4 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-teal/30 hover:bg-teal/[0.02] transition-all duration-300 group/skill cursor-default"
+                    >
+                      <div className="flex items-center mb-3">
+                        <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-navy to-navy-light flex items-center justify-center text-teal mr-4 group-hover/skill:shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all">
+                          <Code2 size={16} />
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-sm font-bold text-offwhite group-hover/skill:text-teal transition-colors">{skill.name}</div>
+                          <div className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">
+                            {skill.category}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Skill "Power" Bar */}
+                      <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${level}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: 0.5 + (0.1 * index) }}
+                          className="h-full bg-gradient-to-r from-teal/40 to-teal"
+                        />
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Status indicators for a more "active" look */}
+            <div className="mt-6 flex flex-wrap gap-4 px-4">
+              <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                <span className="w-1.5 h-1.5 bg-teal rounded-full animate-ping"></span>
+                System Active
+              </div>
+              <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                <span className="w-1.5 h-1.5 bg-maroon rounded-full"></span>
+                Uptime: 99.9%
+              </div>
             </div>
           </motion.div>
         </div>

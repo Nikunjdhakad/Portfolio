@@ -38,9 +38,8 @@ export const EXPERIENCES: Experience[] = [
 export const SKILLS: Skill[] = [
   { name: "React.js", category: "Frontend" },
   { name: "Node.js", category: "Backend" },
-  { name: "Python", category: "Languages" },
   { name: "Java", category: "Languages" },
+  { name: "Mongo DB", category: "Databases" },
   { name: "SQL", category: "Databases" },
   { name: "System Architecture", category: "Design" },
-  { name: "IoT Integration", category: "Embedded" },
 ];

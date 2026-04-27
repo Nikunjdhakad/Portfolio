@@ -10,47 +10,62 @@ interface AnimatedCardProps {
 export const AnimatedCard: React.FC<AnimatedCardProps> = ({ 
   children, 
   className = '', 
-  glowColor = 'rgba(217, 70, 239, 0.3)' 
+  glowColor = 'rgba(0, 240, 255, 0.3)' 
 }) => {
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Calculate rotation based on mouse position relative to center
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rx = ((y - centerY) / centerY) * -10; // Max 10 deg tilt
+    const ry = ((x - centerX) / centerX) * 10;
+    
+    setRotateX(rx);
+    setRotateY(ry);
+    setMousePos({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setRotateX(0);
+    setRotateY(0);
   };
 
   return (
-    <div
-      className={`relative group rounded-[2.5rem] overflow-hidden border border-white/10 transition-all duration-500 hover:border-white/20 ${className}`}
+    <motion.div
+      animate={{ rotateX, rotateY }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className={`relative group rounded-[2.5rem] overflow-hidden border border-white/10 transition-all duration-300 hover:border-teal/30 shadow-2xl ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={handleMouseLeave}
+      style={{ transformStyle: 'preserve-3d' }}
     >
       {/* Background Glow Following Mouse */}
       <div
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
         style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(circle 250px at ${mousePos.x}px ${mousePos.y}px, ${glowColor}, transparent)`,
+          opacity: isHovered ? 0.6 : 0,
+          background: `radial-gradient(circle 350px at ${mousePos.x}px ${mousePos.y}px, ${glowColor}, transparent)`,
         }}
       />
 
-      {/* Animated Border Tracing (Simulation with white border and gradient) */}
-      <div 
-        className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: `conic-gradient(from 0deg at ${mousePos.x}px ${mousePos.y}px, transparent 0deg, white 20deg, transparent 40deg)`
-        }}
-      />
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
       
       {/* Content wrapper */}
-      <div className="relative z-20">
+      <div className="relative z-20 h-full" style={{ transform: 'translateZ(20px)' }}>
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 };

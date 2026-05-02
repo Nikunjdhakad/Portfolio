@@ -11,59 +11,115 @@ export const Hero = () => {
       <HeroDots />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
           >
-            <span className="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-teal uppercase bg-teal/10 rounded-full border border-teal/20">
-              Welcome to my portfolio
-            </span>
-            <h1 className="text-5xl md:text-7xl font-bold text-offwhite mb-6 leading-tight">
-              Hi, I'm <span className="text-teal">Nikunj Dhakad.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-400 mb-10 leading-relaxed font-light">
-              Aspiring Software Developer | B.Tech Computer Science & Engineering
-            </p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1.5, ease: "circOut" }}
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: 40 }}
+                  transition={{ delay: 0.5, duration: 1 }}
+                  className="h-[1px] bg-teal" 
+                />
+                <motion.span 
+                  initial={{ letterSpacing: "1em", opacity: 0 }}
+                  animate={{ letterSpacing: "0.4em", opacity: 1 }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  className="text-[10px] font-mono font-medium text-teal uppercase tracking-[0.4em]"
+                >
+                  System Initialization Complete
+                </motion.span>
+              </div>
+              
+              <h1 className="text-5xl md:text-8xl font-bold text-offwhite mb-10 tracking-tighter uppercase leading-[0.9]">
+                <div className="overflow-hidden mb-2">
+                  <motion.span 
+                    initial={{ y: "100%", skewY: 10 }}
+                    animate={{ y: 0, skewY: 0 }}
+                    transition={{ delay: 0.3, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="block relative py-2"
+                  >
+                    Building modern
+                    <motion.div 
+                      animate={{ x: ["-100%", "200%"] }}
+                      transition={{ duration: 3, repeat: Infinity, repeatDelay: 4 }}
+                      className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-transparent via-teal/10 to-transparent skew-x-[-25deg] pointer-events-none"
+                    />
+                  </motion.span>
+                </div>
+                <div className="overflow-hidden">
+                  <motion.span 
+                    initial={{ y: "100%", skewY: 10 }}
+                    animate={{ y: 0, skewY: 0 }}
+                    transition={{ delay: 0.6, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    className="block text-teal italic drop-shadow-[0_0_20px_rgba(0,240,255,0.25)] text-[0.75em] py-2 pr-4 normal-case"
+                  >
+                    web applications with intelligent design.
+                  </motion.span>
+                </div>
+              </h1>
+            </motion.div>
+            
+            <motion.p 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 1.2, ease: "easeOut" }}
+              className="text-lg md:text-2xl text-slate-400 mb-12 leading-relaxed font-light max-w-2xl border-l-[2px] border-teal/30 pl-8"
+            >
+              Computer Science student focused on building <span className="text-teal/90 font-medium uppercase tracking-[0.15em] text-[0.65em] md:text-[0.6em] align-middle mb-1 inline-block">modern web applications</span> with <span className="text-offwhite font-semibold">clean UI</span> and <span className="text-indigo/80 font-medium italic">scalable backend systems</span>. <br className="hidden md:block" /> Currently developing full-stack skills through real-world projects.
+            </motion.p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-wrap gap-4"
+            transition={{ duration: 0.5, delay: 1 }}
+            className="flex flex-wrap gap-6"
           >
             <a 
               href="#projects" 
-              className="px-8 py-4 bg-teal text-navy font-bold rounded-lg hover:bg-teal-dark transition-all flex items-center shadow-lg shadow-teal/20"
+              className="group px-10 py-5 bg-teal text-navy font-black uppercase tracking-widest text-xs rounded-2xl hover:bg-[#00f7ff] transition-all flex items-center shadow-[0_20px_50px_rgba(0,240,255,0.2)]"
             >
-              View Projects
-              <ChevronRight className="ml-2" size={18} />
+              Explore Manifest
+              <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
             </a>
             <a 
               href="#contact" 
-              className="px-8 py-4 bg-white/5 text-offwhite border border-white/10 hover:bg-white/10 rounded-lg transition-all font-semibold"
+              className="px-10 py-5 bg-white/5 text-offwhite border border-white/10 hover:bg-white/10 rounded-2xl transition-all font-bold uppercase tracking-widest text-xs backdrop-blur-md"
             >
-              Contact Me
+              Establish Link
             </a>
           </motion.div>
 
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-16 flex gap-6 text-slate-500"
+            transition={{ delay: 1.2 }}
+            className="mt-20 flex gap-8 text-slate-500"
           >
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-all hover:scale-110">
-              <Github size={24} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-all hover:scale-110">
-              <Linkedin size={24} />
-            </a>
-            <a href="mailto:nikunjdhakad@gmail.com" className="hover:text-teal transition-all hover:scale-110">
-              <Mail size={24} />
-            </a>
+            {[
+              { icon: Github, href: "https://github.com/Nikunjdhakad" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/nikunjdhakad" },
+              { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=nikunjdhakad@gmail.com" }
+            ].map((social, idx) => (
+              <a 
+                key={idx}
+                href={social.href} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-teal transition-all hover:scale-125 duration-300"
+              >
+                <social.icon size={22} className="animate-flicker" style={{ animationDelay: `${idx * 0.5}s` }} />
+              </a>
+            ))}
           </motion.div>
         </div>
       </div>

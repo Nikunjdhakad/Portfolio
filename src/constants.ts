@@ -14,11 +14,13 @@ export const PROJECTS: Project[] = [
     title: "Fashion Search Engine",
     description: "An AI-integrated search engine for fashion, providing intelligent recommendations and visual search capabilities.",
     techStack: ["Node.js", "React.js", "AI/ML"],
+    link: "https://desifit.onrender.com/",
   },
   {
-    title: "Smart Community Health Monitoring",
-    description: "Early warning system for water-borne diseases utilizing real-time sensor data and predictive analysis.",
-    techStack: ["IoT Sensors", "AI/ML Analysis", "Node.js"],
+    title: "Comming Soon",
+    description: "Working on this",
+    techStack: [""],
+   
   },
 ];
 

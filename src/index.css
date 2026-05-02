@@ -7,12 +7,41 @@
 
   /* Circuitry & Code Palette - Technical & Modern */
   --color-navy: #05060A;        /* Deep Space Gray */
-  --color-navy-light: #0E1117;  /* Obsidian Base */
+  --color-navy-light: #112240;  /* System Surface */
   --color-teal: #00F0FF;        /* Electric Cyan */
   --color-teal-dark: #0088A3;   /* Deep Sea Cyan */
-  --color-maroon: #39FF14;      /* Acid/Matrix Green */
-  --color-maroon-dark: #22C55E; /* Forest Green Surge */
+  --color-indigo: #6366F1;      /* Cyber Indigo */
+  --color-indigo-dark: #4338CA; /* Deep Indigo Surge */
   --color-offwhite: #E6F1FF;    /* Digital Paper */
+
+  @keyframes flicker {
+    0% { opacity: 0.95; }
+    5% { opacity: 0.85; }
+    10% { opacity: 0.95; }
+    15% { opacity: 0.9; }
+    20% { opacity: 1; }
+    100% { opacity: 1; }
+  }
+  --animate-flicker: flicker 3s infinite;
+
+  @keyframes pulse-glow {
+    0% { filter: drop-shadow(0 0 2px var(--color-teal)); }
+    50% { filter: drop-shadow(0 0 10px var(--color-teal)); }
+    100% { filter: drop-shadow(0 0 2px var(--color-teal)); }
+  }
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+
+  @keyframes neon-border {
+    0%, 100% { opacity: 0.5; box-shadow: 0 0 15px var(--color-teal); }
+    50% { opacity: 1; box-shadow: 0 0 35px var(--color-teal); }
+  }
+  --animate-neon-border: neon-border 3s ease-in-out infinite;
+
+  @keyframes cinematic-drift {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50px); }
+  }
+  --animate- cinematic-drift: cinematic-drift 20s linear infinite;
 }
 
 @layer base {
@@ -20,6 +49,24 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-navy text-slate-400 font-sans;
+    @apply bg-[#05060A] text-slate-400 font-sans antialiased selection:bg-teal selection:text-navy;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.03), transparent),
+      radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.03), transparent);
+  }
+
+  /* Cinematic Noise Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.02;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    filter: contrast(150%) brightness(100%);
   }
 }

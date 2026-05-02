@@ -11,6 +11,9 @@ interface Particle {
   alpha: number;
   originX: number;
   originY: number;
+  type: 'star' | 'leaf';
+  rotation: number;
+  rotationSpeed: number;
 }
 
 export const ParticleBackground: React.FC = () => {
@@ -19,11 +22,15 @@ export const ParticleBackground: React.FC = () => {
   const mouse = useRef({ x: 0, y: 0, active: false });
   const scrollOffset = useRef(0);
 
-  useEffect(() => {
+    const lastMouse = useRef({ x: 0, y: 0 });
+    const lastScroll = useRef(0);
+    const activity = useRef(0); // 0 to 1
+
+    useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -32,10 +39,10 @@ export const ParticleBackground: React.FC = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       
-      const particleCount = window.innerWidth < 768 ? 200 : 500;
+      const particleCount = window.innerWidth < 768 ? 150 : 400;
       particles.current = [];
       
-      const colors = ['#00F0FF', '#39FF14', '#ffffff', '#0088A3', '#22C55E'];
+      const colors = ['#00F0FF', '#ffffff', '#6366F1'];
       
       for (let i = 0; i < particleCount; i++) {
         const x = Math.random() * canvas.width;
@@ -45,23 +52,54 @@ export const ParticleBackground: React.FC = () => {
           y,
           originX: x,
           originY: y,
-          vx: (Math.random() - 0.5) * 1.8,
-          vy: (Math.random() - 0.5) * 1.8,
+          vx: (Math.random() - 0.5) * 5,
+          vy: (Math.random() - 0.5) * 5,
           size: Math.random() * 2 + 0.5,
           color: colors[Math.floor(Math.random() * colors.length)],
-          alpha: Math.random() * 0.5 + 0.2
+          alpha: Math.random() * 0.4 + 0.1,
+          type: Math.random() > 0.8 ? 'leaf' : 'star',
+          rotation: Math.random() * Math.PI,
+          rotationSpeed: (Math.random() - 0.5) * 0.05
         });
       }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      const dx = Math.max(-10, Math.min(10, e.clientX - lastMouse.current.x));
+      const dy = Math.max(-10, Math.min(10, e.clientY - lastMouse.current.y));
+      
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
-      mouse.current.active = true;
+      lastMouse.current = { x: e.clientX, y: e.clientY };
+      
+      activity.current = Math.min(activity.current + 0.15, 1);
+
+      particles.current.forEach(p => {
+        const distDx = p.x - e.clientX;
+        const distDy = p.y - e.clientY;
+        const distSq = distDx * distDx + distDy * distDy;
+        const radius = 250;
+        
+        if (distSq < radius * radius) {
+          const dist = Math.sqrt(distSq);
+          const power = (radius - dist) / radius;
+          p.vx += dx * power * 0.08;
+          p.vy += dy * power * 0.08;
+        }
+      });
     };
 
     const handleScroll = () => {
-      scrollOffset.current = window.scrollY;
+      const currentScroll = window.scrollY;
+      const dy = Math.max(-20, Math.min(20, currentScroll - lastScroll.current));
+      lastScroll.current = currentScroll;
+      scrollOffset.current = currentScroll;
+      
+      activity.current = Math.min(activity.current + 0.1, 1);
+
+      particles.current.forEach(p => {
+        p.vy -= dy * 0.03;
+      });
     };
 
     window.addEventListener('resize', initParticles);
@@ -70,46 +108,43 @@ export const ParticleBackground: React.FC = () => {
     initParticles();
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const parallax = scrollOffset.current * 0.3;
+      ctx.fillStyle = '#05060A';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      activity.current *= 0.98; // Fade activity
 
       particles.current.forEach(p => {
-        // Organic float
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Effective position with parallax
-        const displayY = (p.y - parallax + canvas.height) % canvas.height;
-
-        // Interaction
-        if (mouse.current.active) {
-          const dx = mouse.current.x - p.x;
-          const dy = mouse.current.y - displayY;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          
-          if (dist < 200) {
-            const angle = Math.atan2(dy, dx);
-            const force = (200 - dist) / 200;
-            
-            p.vx -= Math.cos(angle) * force * 0.2;
-            p.vy -= Math.sin(angle) * force * 0.2;
-          }
-        }
-
-        // Return to origin (gentle pull)
-        p.vx += (p.originX - p.x) * 0.0001;
-        p.vy += (p.originY - p.y) * 0.0001;
+        // Apply velocity with activity damping
+        p.x += p.vx * activity.current;
+        p.y += p.vy * activity.current;
+        p.rotation += p.rotationSpeed * activity.current;
 
         // Friction
-        p.vx *= 0.95;
-        p.vy *= 0.95;
+        p.vx *= 0.96;
+        p.vy *= 0.96;
 
-        // Draw
-        ctx.beginPath();
-        ctx.arc(p.x, displayY, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
+        // Wrap
+        if (p.x < -50) p.x = canvas.width + 50;
+        if (p.x > canvas.width + 50) p.x = -50;
+        if (p.y < -50) p.y = canvas.height + 50;
+        if (p.y > canvas.height + 50) p.y = -50;
+
         ctx.globalAlpha = p.alpha;
-        ctx.fill();
+        ctx.fillStyle = p.color;
+
+        if (p.type === 'star') {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.size * 2, p.size / 2, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
       });
 
       animationFrameId = requestAnimationFrame(draw);

@@ -43,18 +43,29 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
     <motion.div
       animate={{ rotateX, rotateY }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`relative group rounded-[2.5rem] overflow-hidden border border-white/10 transition-all duration-300 hover:border-teal/30 shadow-2xl ${className}`}
+      className={`relative group rounded-[2.5rem] overflow-hidden border border-white/10 transition-all duration-300 hover:border-teal/50 shadow-2xl ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{ transformStyle: 'preserve-3d' }}
+      data-cursor="card"
     >
+      {/* Cinematic Pulse Glow (Edge Aura) */}
+      <div 
+        className="absolute -inset-[2px] z-10 rounded-[2.5rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+        style={{
+          background: `linear-gradient(45deg, transparent, ${glowColor}, transparent)`,
+          filter: 'blur(5px)',
+          animation: 'pulse-glow 3s infinite'
+        }}
+      />
+
       {/* Background Glow Following Mouse */}
       <div
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
         style={{
-          opacity: isHovered ? 0.6 : 0,
-          background: `radial-gradient(circle 350px at ${mousePos.x}px ${mousePos.y}px, ${glowColor}, transparent)`,
+          opacity: isHovered ? 0.8 : 0,
+          background: `radial-gradient(circle 300px at ${mousePos.x}px ${mousePos.y}px, ${glowColor}, transparent)`,
         }}
       />
 

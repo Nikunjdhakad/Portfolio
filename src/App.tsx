@@ -6,6 +6,7 @@ import { Experience } from './components/Experience';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ParticleBackground } from './components/ParticleBackground';
+import { CustomCursor } from './components/CustomCursor';
 
 /**
  * @license
@@ -14,7 +15,8 @@ import { ParticleBackground } from './components/ParticleBackground';
 
 export default function App() {
   return (
-    <div className="min-h-screen selection:bg-teal/30">
+    <div className="min-h-screen selection:bg-teal/30 md:cursor-none">
+      <CustomCursor />
       <ParticleBackground />
       <Navbar />
       <main className="relative">

@@ -33,7 +33,7 @@ export const Navbar = () => {
             <div className="w-10 h-10 bg-teal/10 rounded-xl border border-teal/30 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
               <Cpu className="text-teal w-6 h-6" />
             </div>
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-maroon rounded-full border-2 border-navy animate-pulse" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-indigo rounded-full border-2 border-navy animate-pulse" />
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-black tracking-tighter text-offwhite leading-none">
@@ -54,9 +54,11 @@ export const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="text-sm font-medium text-slate-300 hover:text-teal transition-colors"
+              className="text-sm font-medium text-slate-300 hover:text-teal transition-colors relative group/nav py-1 px-3"
             >
-              {link.name}
+              <span className="relative z-10">{link.name}</span>
+              <span className="absolute bottom-0 left-3 right-3 w-0 h-[2px] bg-teal transition-all duration-300 group-hover/nav:w-[calc(100%-1.5rem)]" />
+              <div className="absolute inset-0 bg-teal/5 blur-sm rounded-lg opacity-0 group-hover/nav:opacity-100 transition-opacity duration-300" />
             </motion.a>
           ))}
         </div>
@@ -81,16 +83,20 @@ export const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-navy border-t border-white/5 overflow-hidden"
           >
-            <div className="px-4 py-6 space-y-4">
-              {NAV_LINKS.map((link) => (
-                <a
+            <div className="px-4 py-8 space-y-4">
+              {NAV_LINKS.map((link, i) => (
+                <motion.a
                   key={link.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-lg font-medium text-white hover:text-teal transition-colors"
+                  className="block text-2xl font-bold text-white hover:text-teal transition-all border-l-4 border-transparent hover:border-teal pl-6 hover:pl-8 py-2 relative group/mobile-nav"
                 >
-                  {link.name}
-                </a>
+                  <span className="relative z-10">{link.name}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal/10 to-transparent opacity-0 group-hover/mobile-nav:opacity-100 transition-opacity duration-300" />
+                </motion.a>
               ))}
             </div>
           </motion.div>

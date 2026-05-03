@@ -80,7 +80,7 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
       ></div>
       
       {/* Content wrapper */}
-      <div className="relative z-20 h-full bg-navy-light/95 backdrop-blur-sm" style={{ transform: 'translateZ(20px)' }}>
+      <div className="relative z-20 h-full bg-navy-light/95 backdrop-blur-md transition-colors duration-500" style={{ transform: 'translateZ(20px)' }}>
         {children}
       </div>
     </motion.div>

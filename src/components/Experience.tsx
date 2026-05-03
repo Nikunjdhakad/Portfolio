@@ -27,28 +27,53 @@ export const Experience = () => {
                 ease: "circOut"
               }}
             >
-              <AnimatedCard className="p-10 bg-white/[0.03] backdrop-blur-xl flex flex-col items-start border-white/10" glowColor="rgba(0, 240, 255, 0.1)">
-                <div className="w-14 h-14 bg-white/5 rounded-2xl shadow-sm flex items-center justify-center text-teal border border-white/10 mb-8 group-hover:bg-teal group-hover:text-white transition-all duration-300">
-                  {index === 0 ? <Users size={28} /> : <Award size={28} />}
-                </div>
-                <div className="flex items-center gap-3 text-xs font-bold text-indigo uppercase tracking-widest mb-4">
-                  <Calendar size={14} />
-                  Recent Highlight
-                </div>
-                <h3 className="text-2xl font-bold text-offwhite mb-4 leading-tight group-hover:text-teal transition-colors">
-                  {exp.title}
-                </h3>
-                <div className="text-teal font-bold text-sm mb-6 pb-2 border-b-2 border-teal/10">
-                  Role: {exp.role}
-                </div>
-                <p className="text-slate-400 leading-relaxed italic">
-                  "{exp.description}"
-                </p>
+              <AnimatedCard className="p-10 flex flex-col items-start border-white/5 overflow-hidden" glowColor="rgba(0, 240, 255, 0.15)">
+                {/* Decorative Tech Accents */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-[60px] pointer-events-none" />
+                <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo/5 rounded-full blur-[60px] pointer-events-none" />
                 
-                {/* Architectural Accent */}
-                <div className="absolute top-4 right-4 text-teal/10 text-6xl font-black select-none pointer-events-none">
-                  0{index + 1}
+                {/* Numbered Index */}
+                <div className="absolute top-8 right-10 flex flex-col items-end opacity-20 group-hover:opacity-40 transition-opacity">
+                  <span className="text-6xl font-black font-mono leading-none tracking-tighter text-teal">0{index + 1}</span>
+                  <div className="w-12 h-px bg-teal mt-2" />
                 </div>
+
+                {/* Content */}
+                <div className="relative z-10 w-full">
+                  <div className="w-16 h-16 bg-navy-light border border-white/10 rounded-2xl flex items-center justify-center text-teal mb-8 group-hover:scale-110 group-hover:bg-teal group-hover:text-navy transition-all duration-500 shadow-xl">
+                    {index === 0 ? <Users size={32} /> : <Award size={32} />}
+                  </div>
+
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo/10 border border-indigo/20 text-[10px] font-bold text-indigo uppercase tracking-[0.2em] mb-6">
+                    <Calendar size={12} className="animate-pulse" />
+                    <span>Active Deployment</span>
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl font-bold text-offwhite mb-3 tracking-tight group-hover:text-teal transition-colors">
+                    {exp.title}
+                  </h3>
+
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="h-px w-6 bg-teal/40" />
+                    <span className="text-teal font-black text-xs uppercase tracking-widest">
+                      {exp.role}
+                    </span>
+                  </div>
+
+                  <p className="text-slate-400 leading-relaxed font-light text-lg mb-8 border-l-2 border-white/5 pl-6 group-hover:border-teal/30 transition-colors">
+                    {exp.description}
+                  </p>
+
+                  <div className="flex gap-2">
+                    {[1, 2, 3].map(i => (
+                      <div key={i} className="w-1.5 h-1.5 rounded-full bg-teal/30 group-hover:bg-teal transition-colors" style={{ transitionDelay: `${i * 100}ms` }} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Corner Accents */}
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-teal opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-teal opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2" />
               </AnimatedCard>
             </motion.div>
           ))}

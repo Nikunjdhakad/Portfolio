@@ -1,18 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
+:root {
+  --color-navy: #05060A;
+  --color-navy-light: #112240;
+  --color-teal: #00F0FF;
+  --color-teal-dark: #0088A3;
+  --color-indigo: #6366F1;
+  --color-indigo-dark: #4338CA;
+  --color-offwhite: #E6F1FF;
+  --color-slate-400: #94a3b8;
+  --color-slate-300: #cbd5e1;
+}
+
+.light {
+  --color-navy: #F8FAFC;
+  --color-navy-light: #FFFFFF;
+  --color-teal: #0D9488;
+  --color-teal-dark: #0F766E;
+  --color-indigo: #4F46E5;
+  --color-indigo-dark: #3730A3;
+  --color-offwhite: #0F172A;
+  --color-slate-400: #475569;
+  --color-slate-300: #1E293B;
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Circuitry & Code Palette - Technical & Modern */
-  --color-navy: #05060A;        /* Deep Space Gray */
-  --color-navy-light: #112240;  /* System Surface */
-  --color-teal: #00F0FF;        /* Electric Cyan */
-  --color-teal-dark: #0088A3;   /* Deep Sea Cyan */
-  --color-indigo: #6366F1;      /* Cyber Indigo */
-  --color-indigo-dark: #4338CA; /* Deep Indigo Surge */
-  --color-offwhite: #E6F1FF;    /* Digital Paper */
+  --color-navy: var(--color-navy);
+  --color-navy-light: var(--color-navy-light);
+  --color-teal: var(--color-teal);
+  --color-teal-dark: var(--color-teal-dark);
+  --color-indigo: var(--color-indigo);
+  --color-indigo-dark: var(--color-indigo-dark);
+  --color-offwhite: var(--color-offwhite);
+  --color-slate-400: var(--color-slate-400);
+  --color-slate-300: var(--color-slate-300);
 
   @keyframes flicker {
     0% { opacity: 0.95; }
@@ -49,10 +75,15 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-[#05060A] text-slate-400 font-sans antialiased selection:bg-teal selection:text-navy;
+    @apply bg-navy text-slate-400 font-sans antialiased selection:bg-teal selection:text-navy;
     background-image: 
-      radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.03), transparent),
-      radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.03), transparent);
+      radial-gradient(circle at 50% 0%, var(--color-navy-light), transparent),
+      radial-gradient(circle at 100% 100%, var(--color-navy-light), transparent);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  body * {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
   }
 
   /* Cinematic Noise Overlay */

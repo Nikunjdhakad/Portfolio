@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface Particle {
   x: number;
@@ -17,6 +18,7 @@ interface Particle {
 }
 
 export const ParticleBackground: React.FC = () => {
+  const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles = useRef<Particle[]>([]);
   const mouse = useRef({ x: 0, y: 0, active: false });
@@ -42,7 +44,9 @@ export const ParticleBackground: React.FC = () => {
       const particleCount = window.innerWidth < 768 ? 150 : 400;
       particles.current = [];
       
-      const colors = ['#00F0FF', '#ffffff', '#6366F1'];
+      const colors = theme === 'dark' 
+        ? ['#00F0FF', '#ffffff', '#6366F1'] 
+        : ['#0D9488', '#0F172A', '#4F46E5'];
       
       for (let i = 0; i < particleCount; i++) {
         const x = Math.random() * canvas.width;
@@ -108,7 +112,9 @@ export const ParticleBackground: React.FC = () => {
     initParticles();
 
     const draw = () => {
-      ctx.fillStyle = '#05060A';
+      // Get background color from CSS variable
+      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-navy').trim();
+      ctx.fillStyle = bgColor || (theme === 'dark' ? '#05060A' : '#F8FAFC');
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       activity.current *= 0.98; // Fade activity
@@ -158,7 +164,7 @@ export const ParticleBackground: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]);
 
   return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />;
 };

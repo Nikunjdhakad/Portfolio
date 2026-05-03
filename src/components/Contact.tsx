@@ -113,7 +113,7 @@ export const Contact = () => {
             className="relative"
           >
             <div className="absolute -inset-2 bg-gradient-to-r from-teal/10 via-indigo/10 to-navy-light/10 rounded-[3rem] blur-2xl opacity-50"></div>
-            <div className="relative bg-[#0A111F]/60 backdrop-blur-3xl rounded-[3rem] p-10 md:p-14 text-offwhite border border-white/10 shadow-2xl overflow-hidden group">
+            <div className="relative bg-navy-light/60 backdrop-blur-3xl rounded-[3rem] p-10 md:p-14 text-offwhite border border-white/10 shadow-2xl overflow-hidden group transition-colors duration-500">
               <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
                 <div className="space-y-6">
                   <div>
@@ -123,7 +123,7 @@ export const Contact = () => {
                       required
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-700 shadow-inner"
+                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-400/50 shadow-inner"
                       placeholder="Enter Full Name"
                     />
                   </div>
@@ -134,7 +134,7 @@ export const Contact = () => {
                       required
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-700 shadow-inner"
+                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-400/50 shadow-inner"
                       placeholder="Enter Gateway Address"
                     />
                   </div>
@@ -144,7 +144,7 @@ export const Contact = () => {
                       required
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite min-h-[160px] resize-none placeholder:text-slate-700 shadow-inner"
+                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite min-h-[160px] resize-none placeholder:text-slate-400/50 shadow-inner"
                       placeholder="Write Communication Message..."
                     ></textarea>
                   </div>

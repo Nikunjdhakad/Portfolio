@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface AnimatedCardProps {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
   className = '', 
   glowColor = 'rgba(0, 240, 255, 0.3)' 
 }) => {
+  const { theme } = useTheme();
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -71,10 +73,14 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+           style={{ 
+             backgroundImage: `radial-gradient(circle, ${theme === 'dark' ? '#fff' : '#000'} 1px, transparent 1px)`, 
+             backgroundSize: '20px 20px' 
+           }}
+      ></div>
       
       {/* Content wrapper */}
-      <div className="relative z-20 h-full" style={{ transform: 'translateZ(20px)' }}>
+      <div className="relative z-20 h-full bg-navy-light/95 backdrop-blur-sm" style={{ transform: 'translateZ(20px)' }}>
         {children}
       </div>
     </motion.div>

@@ -46,7 +46,7 @@ export const Experience = () => {
                 </p>
                 
                 {/* Architectural Accent */}
-                <div className="absolute top-4 right-4 text-white/5 text-6xl font-black select-none pointer-events-none">
+                <div className="absolute top-4 right-4 text-teal/10 text-6xl font-black select-none pointer-events-none">
                   0{index + 1}
                 </div>
               </AnimatedCard>

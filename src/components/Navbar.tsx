@@ -35,12 +35,9 @@ export const Navbar = () => {
             </div>
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-indigo rounded-full border-2 border-navy animate-pulse" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-black tracking-tighter text-offwhite leading-none">
-              NIKUNJ<span className="text-teal">.</span>
-            </span>
-            <span className="text-[10px] font-bold tracking-[0.2em] text-teal/60 leading-none">
-              DEV_ENGINEER
+          <div className="flex flex-col justify-center">
+            <span className="text-lg font-bold tracking-tight text-offwhite leading-none">
+              Nikunj <span className="text-teal font-black">Dhakad</span>
             </span>
           </div>
         </motion.a>

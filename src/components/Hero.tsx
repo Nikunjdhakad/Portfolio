@@ -22,23 +22,6 @@ export const Hero = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1.5, ease: "circOut" }}
             >
-              <div className="flex items-center gap-4 mb-8">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: 40 }}
-                  transition={{ delay: 0.5, duration: 1 }}
-                  className="h-[1px] bg-teal" 
-                />
-                <motion.span 
-                  initial={{ letterSpacing: "1em", opacity: 0 }}
-                  animate={{ letterSpacing: "0.4em", opacity: 1 }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="text-[10px] font-mono font-medium text-teal uppercase tracking-[0.4em]"
-                >
-                  System Initialization Complete
-                </motion.span>
-              </div>
-              
               <h1 className="text-5xl md:text-8xl font-bold text-offwhite mb-10 tracking-tighter uppercase leading-[0.9]">
                 <div className="overflow-hidden mb-2">
                   <motion.span 

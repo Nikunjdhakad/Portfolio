@@ -7,6 +7,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ParticleBackground } from './components/ParticleBackground';
 import { CustomCursor } from './components/CustomCursor';
+import { ThemeToggle } from './components/ThemeToggle';
 
 /**
  * @license
@@ -15,8 +16,9 @@ import { CustomCursor } from './components/CustomCursor';
 
 export default function App() {
   return (
-    <div className="min-h-screen selection:bg-teal/30 md:cursor-none">
+    <div className="min-h-screen selection:bg-teal/30 md:cursor-none bg-navy">
       <CustomCursor />
+      <ThemeToggle />
       <ParticleBackground />
       <Navbar />
       <main className="relative">

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const HeroDots: React.FC = () => {
+  const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -28,6 +30,8 @@ export const HeroDots: React.FC = () => {
       const rows = Math.ceil(canvas.height / spacing);
       const cols = Math.ceil(canvas.width / spacing);
 
+      const dotColor = theme === 'dark' ? '255, 255, 255' : '15, 23, 42';
+
       for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
           const x = j * spacing;
@@ -39,7 +43,7 @@ export const HeroDots: React.FC = () => {
           
           ctx.beginPath();
           ctx.arc(x, y + wave, 1, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${0.1 + Math.sin(time + j * 0.1) * 0.05})`;
+          ctx.fillStyle = `rgba(${dotColor}, ${0.1 + Math.sin(time + j * 0.1) * 0.05})`;
           ctx.fill();
         }
       }
@@ -53,7 +57,7 @@ export const HeroDots: React.FC = () => {
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]);
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-30" />;
 };

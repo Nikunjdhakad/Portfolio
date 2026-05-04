@@ -115,7 +115,7 @@ export const ParticleBackground: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     initParticles();
 
-    const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-navy').trim() || (theme === 'dark' ? '#05060A' : '#F8FAFC');
+    const bgColor = theme === 'dark' ? '#05060A' : '#F8FAFC';
 
     const draw = () => {
       ctx.fillStyle = bgColor;

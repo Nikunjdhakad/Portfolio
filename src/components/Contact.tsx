@@ -24,7 +24,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 bg-transparent text-offwhite overflow-hidden relative border-t border-white/5">
+    <section id="contact" className="py-32 bg-transparent text-offwhite overflow-hidden relative border-t border-glass-border">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 -z-0 opacity-10 pointer-events-none">
         <div className="w-[500px] h-[500px] bg-teal rounded-full blur-[120px] -mr-64 -mt-64"></div>
@@ -68,7 +68,7 @@ export const Contact = () => {
                     href={item.href} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-teal border border-white/10 group-hover:border-teal group-hover:bg-teal group-hover:text-navy transition-all duration-300 shadow-lg shadow-teal/5"
+                    className="w-14 h-14 bg-glass-bg rounded-2xl flex items-center justify-center text-teal border border-glass-border group-hover:border-teal group-hover:bg-teal group-hover:text-navy transition-all duration-300 shadow-lg shadow-teal/5"
                   >
                     <item.icon size={22} className="group-hover:scale-110 transition-transform" />
                   </a>
@@ -87,7 +87,7 @@ export const Contact = () => {
               ))}
             </div>
 
-            <div className="mt-16 pt-16 border-t border-white/5 flex gap-5">
+            <div className="mt-16 pt-16 border-t border-glass-border flex gap-5">
               {[
                 { icon: Linkedin, href: "https://www.linkedin.com/in/nikunjdhakad" },
                 { icon: Github, href: "https://github.com/Nikunjdhakad" },
@@ -97,7 +97,7 @@ export const Contact = () => {
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="p-4 bg-white/[0.03] rounded-2xl hover:bg-teal hover:text-navy transition-all duration-500 border border-white/5 shadow-inner"
+                  className="p-4 bg-glass-bg rounded-2xl hover:bg-teal hover:text-navy transition-all duration-500 border border-glass-border shadow-inner"
                 >
                   <social.icon size={20} />
                 </a>
@@ -113,7 +113,7 @@ export const Contact = () => {
             className="relative"
           >
             <div className="absolute -inset-2 bg-gradient-to-r from-teal/10 via-indigo/10 to-navy-light/10 rounded-[3rem] blur-2xl opacity-50"></div>
-            <div className="relative bg-navy-light/60 backdrop-blur-3xl rounded-[3rem] p-10 md:p-14 text-offwhite border border-white/10 shadow-2xl overflow-hidden group transition-colors duration-500">
+            <div className="relative bg-navy-light/60 backdrop-blur-3xl rounded-[3rem] p-10 md:p-14 text-offwhite border border-glass-border shadow-2xl overflow-hidden group transition-colors duration-500">
               <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
                 <div className="space-y-6">
                   <div>
@@ -123,7 +123,7 @@ export const Contact = () => {
                       required
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-400/50 shadow-inner"
+                      className="w-full px-6 py-5 bg-navy/40 border border-glass-border rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-400/50 shadow-inner"
                       placeholder="Enter Full Name"
                     />
                   </div>
@@ -134,7 +134,7 @@ export const Contact = () => {
                       required
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-400/50 shadow-inner"
+                      className="w-full px-6 py-5 bg-navy/40 border border-glass-border rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite placeholder:text-slate-400/50 shadow-inner"
                       placeholder="Enter Gateway Address"
                     />
                   </div>
@@ -144,7 +144,7 @@ export const Contact = () => {
                       required
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      className="w-full px-6 py-5 bg-navy/40 border border-white/5 rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite min-h-[160px] resize-none placeholder:text-slate-400/50 shadow-inner"
+                      className="w-full px-6 py-5 bg-navy/40 border border-glass-border rounded-2xl focus:outline-none focus:border-teal transition-all text-offwhite min-h-[160px] resize-none placeholder:text-slate-400/50 shadow-inner"
                       placeholder="Write Communication Message..."
                     ></textarea>
                   </div>

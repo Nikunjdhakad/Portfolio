@@ -76,7 +76,7 @@ export const Hero = () => {
             </a>
             <a 
               href="#contact" 
-              className="px-10 py-5 bg-white/5 text-offwhite border border-white/10 hover:bg-white/10 rounded-2xl transition-all font-bold uppercase tracking-widest text-xs backdrop-blur-md"
+              className="px-10 py-5 bg-glass-bg text-offwhite border border-glass-border hover:bg-teal/10 rounded-2xl transition-all font-bold uppercase tracking-widest text-xs backdrop-blur-md"
             >
               Establish Link
             </a>

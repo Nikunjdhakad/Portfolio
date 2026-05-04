@@ -7,7 +7,7 @@ import { AnimatedCard } from './AnimatedCard';
 
 export const Projects = () => {
   return (
-    <section id="projects" className="py-32 bg-transparent border-t border-white/5 relative overflow-hidden">
+    <section id="projects" className="py-32 bg-transparent border-t border-glass-border relative overflow-hidden">
       {/* Cinematic Background Drifts */}
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-teal/5 blur-[120px] rounded-full animate-pulse pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo/5 blur-[120px] rounded-full animate-pulse pointer-events-none" style={{ animationDelay: '2s' }}></div>
@@ -21,7 +21,7 @@ export const Projects = () => {
             transition={{ duration: 0.8, ease: "circOut" }}
           >
             <span className="text-teal font-bold text-[10px] uppercase tracking-[0.6em] block mb-4 font-mono">Module: SYSTEM_EXPLORATION</span>
-            <h2 className="text-5xl md:text-7xl font-bold text-offwhite italic serif tracking-tight">Recent Projects</h2>
+            <h2 className="text-5xl md:text-7xl font-bold text-offwhite italic tracking-tight">Recent Projects</h2>
           </motion.div>
           <motion.div 
             initial={{ opacity: 0 }}
@@ -48,9 +48,9 @@ export const Projects = () => {
               }}
             >
               <AnimatedCard glowColor={index % 2 === 0 ? 'rgba(0, 240, 255, 0.2)' : 'rgba(99, 102, 241, 0.2)'}>
-                <div className="aspect-video bg-navy/90 relative flex items-center justify-center overflow-hidden group">
+                <div className="aspect-video bg-navy relative flex items-center justify-center overflow-hidden group">
                   {/* Scanline Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-teal/10 to-transparent h-[10%] w-full top-0 animate-flicker pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-teal/5 to-transparent h-[10%] w-full top-0 animate-flicker pointer-events-none"></div>
                   
                   {/* Abstract graphic background */}
                   <div className="absolute inset-0 opacity-10 group-hover:opacity-5 transition-opacity duration-700">
@@ -69,7 +69,7 @@ export const Projects = () => {
                     }}
                     className="relative z-10"
                   >
-                    <Layers className="text-teal w-20 h-20 group-hover:scale-110 group-hover:text-[#40f5ff] group-hover:drop-shadow-[0_0_30px_rgba(0,240,255,0.9)] transition-all duration-500" />
+                    <Layers className="text-teal w-20 h-20 group-hover:scale-110 group-hover:text-teal group-hover:drop-shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all duration-500" />
                   </motion.div>
                   
                   <div className="absolute top-8 right-8 z-20">
@@ -78,7 +78,7 @@ export const Projects = () => {
                       href={project.link || "#"} 
                       target={project.link ? "_blank" : undefined}
                       rel={project.link ? "noopener noreferrer" : undefined}
-                      className="p-4 bg-white/5 hover:bg-teal hover:text-navy rounded-2xl text-white backdrop-blur-xl border border-white/10 transition-all shadow-2xl flex items-center justify-center group/link"
+                      className="p-4 bg-glass-bg hover:bg-teal hover:text-navy rounded-2xl text-offwhite backdrop-blur-xl border border-glass-border transition-all shadow-2xl flex items-center justify-center group/link"
                     >
                       <ExternalLink size={20} className="group-hover:animate-pulse" />
                     </motion.a>
@@ -95,7 +95,7 @@ export const Projects = () => {
                     {project.techStack.map((tech) => (
                       <span 
                         key={tech} 
-                        className="px-3 py-1 bg-white/[0.03] text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] rounded-md border border-white/5 font-mono"
+                        className="px-3 py-1 bg-glass-bg text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em] rounded-md border border-glass-border font-mono"
                       >
                         {tech}
                       </span>

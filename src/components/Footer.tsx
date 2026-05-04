@@ -4,7 +4,7 @@ import { Cpu } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="py-16 bg-navy border-t border-white/5 relative overflow-hidden transition-colors duration-500">
+    <footer className="py-16 bg-navy border-t border-glass-border relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-teal/20 to-transparent" />
       
       <motion.div 

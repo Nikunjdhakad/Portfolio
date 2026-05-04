@@ -12,7 +12,7 @@ export const ThemeToggle = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleTheme}
-      className="fixed top-24 right-4 z-50 p-3 rounded-full bg-navy-light/80 backdrop-blur-md border border-white/10 text-teal shadow-2xl hover:bg-teal hover:text-navy transition-colors duration-300 group"
+      className="fixed top-24 right-4 z-50 p-3 rounded-full bg-glass-bg backdrop-blur-md border border-glass-border text-teal shadow-2xl hover:bg-teal hover:text-navy transition-all duration-300 group"
       aria-label="Toggle theme"
     >
       <div className="relative w-6 h-6 flex items-center justify-center">
@@ -42,7 +42,7 @@ export const ThemeToggle = () => {
       </div>
       
       {/* Tooltip / Label */}
-      <span className="absolute right-full mr-4 px-2 py-1 rounded bg-navy-light border border-white/10 text-[10px] font-mono tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+      <span className="absolute right-full mr-4 px-2 py-1 rounded bg-glass-bg border border-glass-border text-[10px] font-mono tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap text-offwhite">
         {theme === 'dark' ? 'Switch_To_Light' : 'Switch_To_Dark'}
       </span>
     </motion.button>

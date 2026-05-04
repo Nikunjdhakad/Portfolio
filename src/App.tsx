@@ -16,7 +16,7 @@ import { ThemeToggle } from './components/ThemeToggle';
 
 export default function App() {
   return (
-    <div className="min-h-screen selection:bg-teal/30 md:cursor-none bg-navy">
+    <div className="min-h-screen selection:bg-teal/30 md:cursor-none bg-navy transition-colors duration-500">
       <CustomCursor />
       <ThemeToggle />
       <ParticleBackground />

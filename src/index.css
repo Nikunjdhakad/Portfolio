@@ -11,6 +11,8 @@
   --color-offwhite: #E6F1FF;
   --color-slate-400: #94a3b8;
   --color-slate-300: #cbd5e1;
+  --glass-bg: rgba(17, 34, 64, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.05);
 }
 
 .light {
@@ -23,6 +25,8 @@
   --color-offwhite: #0F172A;
   --color-slate-400: #475569;
   --color-slate-300: #1E293B;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.05);
 }
 
 @theme {
@@ -39,6 +43,9 @@
   --color-offwhite: var(--color-offwhite);
   --color-slate-400: var(--color-slate-400);
   --color-slate-300: var(--color-slate-300);
+  
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
 
   @keyframes flicker {
     0% { opacity: 0.95; }
@@ -75,10 +82,10 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-navy text-slate-400 font-sans antialiased selection:bg-teal selection:text-navy transition-colors duration-500 ease-in-out;
+    @apply bg-navy text-slate-400 font-sans antialiased selection:bg-teal selection:text-navy transition-all duration-500 ease-in-out;
     background-image: 
       radial-gradient(circle at 50% 0%, var(--color-navy-light), transparent),
-      radial-gradient(circle at 100% 100%, var(--color-navy-light), transparent);
+      radial-gradient(circle at 100% 100%, var(--glass-bg), transparent);
   }
 
   /* Optimize animations with GPU acceleration */

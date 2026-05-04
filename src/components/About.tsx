@@ -88,10 +88,10 @@ export const About = () => {
                     className={`p-5 rounded-2xl border transition-all duration-500 group/skill cursor-default shadow-xl relative overflow-hidden backdrop-blur-sm
                       ${skill.category === 'Backend' 
                         ? 'bg-indigo/5 border-indigo/20 hover:border-indigo/50 hover:bg-indigo/10' 
-                        : 'bg-navy-light/30 border-white/5 hover:border-teal/30 hover:bg-teal/[0.02]'}`}
+                        : 'bg-glass-bg border-glass-border hover:border-teal/30 hover:bg-teal/[0.02]'}`}
                   >
                     {/* Background Shine */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover/skill:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-teal/5 to-transparent opacity-0 group-hover/skill:opacity-100 transition-opacity duration-500" />
                     
                     <div className="flex items-center mb-4 relative z-10">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg
@@ -119,7 +119,7 @@ export const About = () => {
                     </div>
                     
                     {/* Skill Progress Indicator (Aesthetic) */}
-                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden relative z-10">
+                    <div className="h-1 w-full bg-slate-400/10 rounded-full overflow-hidden relative z-10">
                       <motion.div 
                         initial={{ width: 0 }}
                         whileInView={{ width: skill.category === 'Backend' ? '45%' : '85%' }}

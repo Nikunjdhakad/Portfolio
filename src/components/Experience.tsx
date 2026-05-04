@@ -7,7 +7,7 @@ import { AnimatedCard } from './AnimatedCard';
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-24 bg-transparent border-t border-white/5">
+    <section id="experience" className="py-24 bg-transparent border-t border-glass-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-4xl font-bold text-offwhite mb-4">Leadership & <span className="text-teal">Community</span></h2>
@@ -27,7 +27,7 @@ export const Experience = () => {
                 ease: "circOut"
               }}
             >
-              <AnimatedCard className="p-10 flex flex-col items-start border-white/5 overflow-hidden" glowColor="rgba(0, 240, 255, 0.15)">
+              <AnimatedCard className="p-10 flex flex-col items-start border-glass-border overflow-hidden" glowColor="rgba(0, 240, 255, 0.15)">
                 {/* Decorative Tech Accents */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-teal/5 rounded-full blur-[60px] pointer-events-none" />
                 <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo/5 rounded-full blur-[60px] pointer-events-none" />
@@ -40,7 +40,7 @@ export const Experience = () => {
 
                 {/* Content */}
                 <div className="relative z-10 w-full">
-                  <div className="w-16 h-16 bg-navy-light border border-white/10 rounded-2xl flex items-center justify-center text-teal mb-8 group-hover:scale-110 group-hover:bg-teal group-hover:text-navy transition-all duration-500 shadow-xl">
+                  <div className="w-16 h-16 bg-navy-light border border-glass-border rounded-2xl flex items-center justify-center text-teal mb-8 group-hover:scale-110 group-hover:bg-teal group-hover:text-navy transition-all duration-500 shadow-xl">
                     {index === 0 ? <Users size={32} /> : <Award size={32} />}
                   </div>
 
@@ -60,7 +60,7 @@ export const Experience = () => {
                     </span>
                   </div>
 
-                  <p className="text-slate-400 leading-relaxed font-light text-lg mb-8 border-l-2 border-white/5 pl-6 group-hover:border-teal/30 transition-colors">
+                  <p className="text-slate-400 leading-relaxed font-light text-lg mb-8 border-l-2 border-glass-border pl-6 group-hover:border-teal/30 transition-colors">
                     {exp.description}
                   </p>
 

@@ -19,7 +19,7 @@ export const Navbar = () => {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-navy/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'
+        scrolled ? 'bg-navy/80 backdrop-blur-md border-b border-glass-border py-4' : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -78,7 +78,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-navy border-t border-white/5 overflow-hidden"
+            className="md:hidden bg-navy border-t border-glass-border overflow-hidden"
           >
             <div className="px-4 py-8 space-y-4">
               {NAV_LINKS.map((link, i) => (

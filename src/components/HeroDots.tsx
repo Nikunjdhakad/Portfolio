@@ -26,7 +26,8 @@ export const HeroDots: React.FC = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       time += 0.01;
 
-      const spacing = 30;
+      const isMobile = window.innerWidth < 768;
+      const spacing = isMobile ? 50 : 30; // Increase spacing on mobile
       const rows = Math.ceil(canvas.height / spacing);
       const cols = Math.ceil(canvas.width / spacing);
 
@@ -38,7 +39,9 @@ export const HeroDots: React.FC = () => {
           const y = i * spacing;
           
           // Wave logic
-          const dist = Math.sqrt(Math.pow(x - canvas.width / 2, 2) + Math.pow(y - canvas.height / 2, 2));
+          const distX = x - canvas.width / 2;
+          const distY = y - canvas.height / 2;
+          const dist = Math.sqrt(distX * distX + distY * distY);
           const wave = Math.sin(dist * 0.01 - time * 2) * 2;
           
           ctx.beginPath();

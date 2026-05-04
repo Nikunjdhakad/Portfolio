@@ -72,8 +72,8 @@ export const Experience = () => {
                 </div>
 
                 {/* Corner Accents */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-teal opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-teal opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2" />
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-teal rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-4 group-hover:translate-y-4" />
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-teal rounded-br-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:-translate-x-4 group-hover:-translate-y-4" />
               </AnimatedCard>
             </motion.div>
           ))}

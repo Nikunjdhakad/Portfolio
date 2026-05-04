@@ -83,36 +83,56 @@ export const About = () => {
                     initial={{ opacity: 0, y: 30, scale: 0.8 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.1 * index + 0.5, duration: 0.6, ease: "backOut" }}
-                    whileHover={{ y: -5, scale: 1.05 }}
-                    className="p-5 bg-white/[0.02] rounded-2xl border border-white/5 hover:border-teal/30 hover:bg-teal/[0.02] transition-all duration-300 group/skill cursor-default shadow-xl"
+                    transition={{ delay: 0.1 * index, duration: 0.6, ease: "backOut" }}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    className={`p-5 rounded-2xl border transition-all duration-500 group/skill cursor-default shadow-xl relative overflow-hidden backdrop-blur-sm
+                      ${skill.category === 'Backend' 
+                        ? 'bg-indigo/5 border-indigo/20 hover:border-indigo/50 hover:bg-indigo/10' 
+                        : 'bg-navy-light/30 border-white/5 hover:border-teal/30 hover:bg-teal/[0.02]'}`}
                   >
-                    <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-navy to-navy-light flex items-center justify-center text-teal mr-4 group-hover/skill:shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all">
+                    {/* Background Shine */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover/skill:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="flex items-center mb-4 relative z-10">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg
+                        ${skill.category === 'Backend' 
+                          ? 'bg-indigo/20 text-indigo group-hover/skill:bg-indigo group-hover/skill:text-white' 
+                          : 'bg-teal/10 text-teal group-hover/skill:bg-teal group-hover/skill:text-navy'}`}
+                      >
                         <Code2 size={18} />
                       </div>
-                      <div className="flex-1">
-                        <div className="text-sm font-bold text-offwhite group-hover/skill:text-teal transition-colors tracking-tight">{skill.name}</div>
-                        <div className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold font-mono">
+                      <div className="flex-1 ml-4">
+                        <div className="flex items-center gap-2">
+                          <div className="text-sm font-bold text-offwhite group-hover/skill:text-teal transition-colors tracking-tight slashed-zero">
+                            {skill.name}
+                          </div>
+                          {skill.category === 'Backend' && (
+                            <span className="text-[7px] px-1.5 py-0.5 rounded-full bg-indigo/20 text-indigo border border-indigo/30 font-black uppercase tracking-tighter animate-pulse">
+                              Learning
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold font-mono mt-0.5">
                           {skill.category}
                         </div>
                       </div>
                     </div>
                     
-                    {/* Simulated Expertise Bar */}
-                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                    {/* Skill Progress Indicator (Aesthetic) */}
+                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden relative z-10">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: `${60 + (index * 7) % 35}%` }}
+                        whileInView={{ width: skill.category === 'Backend' ? '45%' : '85%' }}
                         viewport={{ once: true }}
                         transition={{ 
-                          type: "spring",
-                          stiffness: 50,
-                          damping: 10,
-                          restDelta: 0.001,
-                          delay: 0.8 + (index * 0.05) 
+                          duration: 1.5,
+                          delay: 0.5 + (index * 0.1),
+                          ease: "circOut"
                         }}
-                        className="h-full bg-gradient-to-r from-teal/40 to-teal shadow-[0_0_10px_rgba(0,240,255,0.3)]"
+                        className={`h-full rounded-full transition-all duration-1000
+                          ${skill.category === 'Backend' 
+                            ? 'bg-indigo shadow-[0_0_8px_rgba(99,102,241,0.5)]' 
+                            : 'bg-teal shadow-[0_0_8px_rgba(0,240,255,0.5)]'}`}
                       />
                     </div>
                   </motion.div>

@@ -14,6 +14,9 @@ export const CustomCursor = () => {
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
+    // Disable custom cursor logic on devices that don't support hover (mobile)
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);

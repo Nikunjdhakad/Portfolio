@@ -20,6 +20,9 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Disable complex calculations on devices that don't support hover (mobile)
+    if (!window.matchMedia('(hover: hover)').matches) return;
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -80,7 +83,7 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
       ></div>
       
       {/* Content wrapper */}
-      <div className="relative z-20 h-full bg-navy-light/95 backdrop-blur-md transition-colors duration-500" style={{ transform: 'translateZ(20px)' }}>
+      <div className="relative z-20 h-full bg-navy-light/95 backdrop-blur-md transition-colors duration-500 rounded-[2.5rem]" style={{ transform: 'translateZ(20px)' }}>
         {children}
       </div>
     </motion.div>

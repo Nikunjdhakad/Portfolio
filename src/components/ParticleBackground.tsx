@@ -38,10 +38,11 @@ export const ParticleBackground: React.FC = () => {
     let animationFrameId: number;
 
     const initParticles = () => {
+      const isMobile = window.innerWidth < 768;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       
-      const particleCount = window.innerWidth < 768 ? 150 : 400;
+      const particleCount = isMobile ? 60 : 400; // Drastically reduced for mobile
       particles.current = [];
       
       const colors = theme === 'dark' 
@@ -56,9 +57,9 @@ export const ParticleBackground: React.FC = () => {
           y,
           originX: x,
           originY: y,
-          vx: (Math.random() - 0.5) * 5,
-          vy: (Math.random() - 0.5) * 5,
-          size: Math.random() * 2 + 0.5,
+          vx: (Math.random() - 0.5) * (isMobile ? 2 : 5), // Slower on mobile
+          vy: (Math.random() - 0.5) * (isMobile ? 2 : 5),
+          size: Math.random() * (isMobile ? 1.5 : 2) + 0.5,
           color: colors[Math.floor(Math.random() * colors.length)],
           alpha: Math.random() * 0.4 + 0.1,
           type: Math.random() > 0.8 ? 'leaf' : 'star',
@@ -69,6 +70,9 @@ export const ParticleBackground: React.FC = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Disable particle reaction on mobile/touch browsers
+      if (!window.matchMedia('(hover: hover)').matches) return;
+      
       const dx = Math.max(-10, Math.min(10, e.clientX - lastMouse.current.x));
       const dy = Math.max(-10, Math.min(10, e.clientY - lastMouse.current.y));
       
@@ -111,30 +115,35 @@ export const ParticleBackground: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     initParticles();
 
+    const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-navy').trim() || (theme === 'dark' ? '#05060A' : '#F8FAFC');
+
     const draw = () => {
-      // Get background color from CSS variable
-      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--color-navy').trim();
-      ctx.fillStyle = bgColor || (theme === 'dark' ? '#05060A' : '#F8FAFC');
+      ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       activity.current *= 0.98; // Fade activity
 
+      // Only animate if some activity exists
+      if (activity.current > 0.01) {
+        particles.current.forEach(p => {
+          // Apply velocity with activity damping
+          p.x += p.vx * activity.current;
+          p.y += p.vy * activity.current;
+          p.rotation += p.rotationSpeed * activity.current;
+
+          // Friction
+          p.vx *= 0.96;
+          p.vy *= 0.96;
+
+          // Wrap
+          if (p.x < -50) p.x = canvas.width + 50;
+          if (p.x > canvas.width + 50) p.x = -50;
+          if (p.y < -50) p.y = canvas.height + 50;
+          if (p.y > canvas.height + 50) p.y = -50;
+        });
+      }
+
       particles.current.forEach(p => {
-        // Apply velocity with activity damping
-        p.x += p.vx * activity.current;
-        p.y += p.vy * activity.current;
-        p.rotation += p.rotationSpeed * activity.current;
-
-        // Friction
-        p.vx *= 0.96;
-        p.vy *= 0.96;
-
-        // Wrap
-        if (p.x < -50) p.x = canvas.width + 50;
-        if (p.x > canvas.width + 50) p.x = -50;
-        if (p.y < -50) p.y = canvas.height + 50;
-        if (p.y > canvas.height + 50) p.y = -50;
-
         ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
 

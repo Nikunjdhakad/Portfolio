@@ -26,9 +26,9 @@ export const PROJECTS: Project[] = [
 
 export const EXPERIENCES: Experience[] = [
   {
-    title: "Cyber Security with Emerging Technologies",
-    role: "Organizer",
-    description: "Orchestrated a major technical talk focusing on the impact of emerging technologies on modern security landscapes.",
+    title: "Smart India Hackathon (SIH)",
+    role: "Team Lead",
+    description: "Participated in Smart India Hackathon, collaborating in a team to design and develop a real-world solution within a limited timeframe. Worked on problem analysis, solution design, and rapid development under pressure.",
   },
   {
     title: "QueryQuest: Journey into SQL and Databases",
@@ -38,10 +38,12 @@ export const EXPERIENCES: Experience[] = [
 ];
 
 export const SKILLS: Skill[] = [
+  { name: "HTML, CSS, JS", category: "Frontend" },
   { name: "React.js", category: "Frontend" },
+  { name: "Tailwind CSS", category: "Frontend" },
+  { name: "Vite", category: "Frontend" },
   { name: "Node.js", category: "Backend" },
-  { name: "Java", category: "Languages" },
-  { name: "Mongo DB", category: "Databases" },
-  { name: "SQL", category: "Databases" },
-  { name: "System Architecture", category: "Design" },
+  { name: "Express.js", category: "Backend" },
+  { name: "Git & GitHub", category: "Tools" },
+  { name: "Render", category: "Deployment" },
 ];
